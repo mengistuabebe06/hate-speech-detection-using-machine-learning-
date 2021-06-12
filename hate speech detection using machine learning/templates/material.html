@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Machine Learning Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container col-sm-6">
+  <br>
+    {% if msg =="Your Post is 'hate'" %}
+   
+  <div class="alert alert-danger">
+  <strong>Sorry! </strong>  {{msg}}
+ </div>
+ {% endif %}
+ {%if msg =="Your Post is 'normal'" %}
+ <div class="alert alert-success">
+  <strong>Congra! </strong>  {{msg}}
+ </div>
+{% endif %}
+<br>
+  <form action="/handle_data" method="post" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="pwd">Machine Learning Algorithm</label>
+     <select class="form-control" id="exampleFormControlSelect1" required name="ml">
+      <option value="nb">Naive Bayesian</option>
+      <option value="svm">Support Vector Machine</option>
+      <option value="lr">Logistic Regression</option>
+      <option value="knn">K Nearest Neiboor</option>
+      <option value="dt">Decision Tree</option>
+      <option value="rf">Random Forest</option>
+      <option value="gb">Gradient Boosting</option>
+    </select>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+     <div class="form-group">
+      <label for="uname">Users Post:</label>
+      <textarea  class="form-control" id="uname" placeholder="Enter Your Post" name="msg" required></textarea>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Validate</button>
+  </form>
+
+</div>
+
+<script>
+// Disable form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+</body>
+</html>
